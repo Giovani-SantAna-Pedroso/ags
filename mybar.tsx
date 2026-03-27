@@ -1,11 +1,22 @@
 import app from "ags/gtk4/app"
-import { Astal } from "ags/gtk4"
+import { Astal, Gtk } from "ags/gtk4"
 import { createPoll } from "ags/time"
+import MyButton from "./components/Mybutton"
+import Counter from "./stateExample"
 
 function Bar(monitor = 0) {
+  const date = createPoll("", 1000, `bash -c "date +%H:%M"`)
   return (
     <window visible class="Bar" monitor={monitor}>
-      <box>Content of the widget</box>
+      <box
+        orientation={Gtk.Orientation.VERTICAL}
+        css="display:flex; flex-direction:column"
+      >
+        Content of the widget
+        <MyButton label={"button for the monitor " + monitor} />
+        <Counter />
+        <label label={date} />
+      </box>
     </window>
   )
 }
@@ -13,6 +24,6 @@ function Bar(monitor = 0) {
 app.start({
   main() {
     Bar(0)
-    Bar(1) // instantiate for each monitor
+    Bar(1)
   },
 })
