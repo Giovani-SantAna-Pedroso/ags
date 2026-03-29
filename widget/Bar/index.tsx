@@ -4,6 +4,7 @@ import { For, With, createBinding, onCleanup } from "ags"
 import { Astal, Gdk } from "ags/gtk4"
 import BarLeft from "./Left"
 import BarRight from "./Right"
+import BarCenter from "./Center"
 
 export default function Bar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
   let win: Astal.Window
@@ -33,7 +34,7 @@ export default function Bar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
           <BarLeft />
         </box>
         <box $type="center">
-          <label label={"wtett"} />
+          <BarCenter />
         </box>
         <box $type="end">
           <BarRight />
