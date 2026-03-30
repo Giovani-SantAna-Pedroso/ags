@@ -1,8 +1,6 @@
-//
 import Separator from "../../components/Separator"
-import { createSubprocess, execAsync, subprocess } from "ags/process"
+import { createSubprocess, execAsync, exec, subprocess } from "ags/process"
 import { createState, For, With } from "ags"
-// import Separator from "../../components/Separator"
 
 type Workspace = {
   name: string
@@ -10,70 +8,9 @@ type Workspace = {
   visible: boolean
 }
 
-const workspaces = createSubprocess<Workspace[]>(
-  [],
-  ["swaymsg", "-m", "-r", "-t", "subscribe", '["workspace"]'],
-  async (stdout, prev: Workspace[]) => {
-    const ws = await getWorkspaces()
-    console.log(ws)
-    return ws
-  },
-)
-//
-// const monitors = createSubprocess<string[]>(
-//   [],
-//   ["swaymsg", "-m", "-r", "-t", "subscribe", '["workspace"]'],
-//   (stdout, prev: Workspace[]) => {
-//     const wsJson = JSON.parse(stdout)
-//     console.log(wsJson)
-//
-//     const map = []
-//
-//     for (const ws of wsJson) {
-//       map.push({ name: ws.name, output: ws.output, visible: ws.visible })
-//       if (ws.output) monitors.add(ws.output)
-//     }
-//
-//     console.log("--monitors--:", monitors)
-//     return [...monitors]
-//   },
-// )
-//
-// // component
-// export default function WorkspacesSway() {
-//   return (
-//     <box class="workspaces-container">
-//       <For each={monitors}>
-//         {(monitor) => (
-//           <box>
-//             <For each={workspaces}>
-//               {({ output, name, visible }) =>
-//                 output === monitor ? (
-//                   <button
-//                     class="btn-workspace"
-//                     css={`
-//                       margin: 0px 8px;
-//                       ${visible ? "color:#4a4A4A;" : ""}
-//                     `}
-//                     onClicked={() => execAsync(["swaymsg", "workspace", name])}
-//                   >
-//                     {name}
-//                   </button>
-//                 ) : (
-//                   <label />
-//                 )
-//               }
-//             </For>
-//           </box>
-//         )}
-//       </For>
-//     </box>
-//   )
-// }
-
-async function getWorkspaces(): Promise<Workspace[]> {
+function getWorkspaces(): Workspace[] {
   const workspacesRaw = JSON.parse(
-    await execAsync(["swaymsg", "-t", "get_workspaces", "-r"]),
+    exec(["swaymsg", "-t", "get_workspaces", "-r"]),
   )
   const workspaces: Workspace[] = []
 
@@ -84,20 +21,29 @@ async function getWorkspaces(): Promise<Workspace[]> {
   return workspaces
 }
 
-async function getMonitors(): Promise<string[]> {
-  const out = JSON.parse(
-    await execAsync(["swaymsg", "-t", "get_outputs", "-r"]),
-  )
+function getMonitors(): string[] {
+  const out = JSON.parse(exec(["swaymsg", "-t", "get_outputs", "-r"]))
   return out.map((monitor: { name: string }) => monitor.name)
 }
 
-const [monitors, setMonitors] = createState<string[]>(await getMonitors())
-// const [workspaces, setWorkspaces] = createState<
-//   { name: string; output: string; visible: boolean }[]
-// >(await getWorkspaces())
+const workspaces = createSubprocess<Workspace[]>(
+  getWorkspaces(),
+  ["swaymsg", "-m", "-r", "-t", "subscribe", '["workspace"]'],
+  (stdout, prev: Workspace[]) => {
+    return getWorkspaces()
+  },
+)
 
-// component
+const monitors = createSubprocess<string[]>(
+  getMonitors(),
+  ["swaymsg", "-m", "-r", "-t", "subscribe", '["output"]'],
+  (stdout, prev: string[]) => {
+    return getMonitors()
+  },
+)
+
 export default function Workspaces() {
+  console.log(workspaces)
   return (
     <box class={"workspaces-container"}>
       <For each={monitors}>
