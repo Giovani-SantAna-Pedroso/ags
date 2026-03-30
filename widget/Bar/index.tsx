@@ -6,7 +6,13 @@ import BarLeft from "./Left"
 import BarRight from "./Right"
 import BarCenter from "./Center"
 
-export default function Bar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
+export default function Bar({
+  gdkmonitor,
+  handleIsMenuOpen,
+}: {
+  gdkmonitor: Gdk.Monitor
+  handleIsMenuOpen: any
+}) {
   let win: Astal.Window
   const { TOP, LEFT, RIGHT, BOTTOM } = Astal.WindowAnchor
 
@@ -31,7 +37,7 @@ export default function Bar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
     >
       <centerbox>
         <box $type="start">
-          <BarLeft />
+          <BarLeft handleIsMenuOpen={handleIsMenuOpen} />
         </box>
         <box $type="center">
           <BarCenter />
