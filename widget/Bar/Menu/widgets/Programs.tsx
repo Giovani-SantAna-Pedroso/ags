@@ -1,7 +1,13 @@
 import { Gtk } from "ags/gtk4"
-import { createState } from "gnim"
+import Apps from "gi://AstalApps"
+import { createState } from "ags"
 
 export default function () {
+  const apps = new Apps.Apps()
+
+  for (const app of apps.fuzzy_query("firefox")) {
+    print(app.name)
+  }
   const [programName, setProgramName] = createState("")
   return (
     <box
