@@ -7,3 +7,8 @@
 # TODO
 
 - [ ] Change the style of the calendar
+
+# Inspirations
+
+https://github.com/JohnOberhauser/OkPanel
+https://www.youtube.com/watch?v=YRDbhWHF8bY -> https://github.com/flickowoa/dotfiles/tree/hyprland-yorha

@@ -1,7 +1,7 @@
 import Separator from "../../../components/Separator"
 import Mpris from "../Mpris"
 import WorkspacesHyprland from "../../Workspaces/Hyprland.tsx.bak"
-import WorkspacesSway from "../../Workspaces/Sway"
+// import WorkspacesSway from "../../Workspaces/Sway"
 
 export default function BarLeft({
   handleIsMenuOpen,
@@ -22,7 +22,7 @@ export default function BarLeft({
 
       {/* <Mpris></Mpris> */}
 
-      <WorkspacesSway />
+      {/* <WorkspacesSway /> */}
 
       <Separator />
     </box>

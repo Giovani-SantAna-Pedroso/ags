@@ -14,24 +14,19 @@
   margin: 0px;
 }
 
-// not working
-// .bar-center>.workspaces-container:first-child {
-//   margin-left: 100;
-// }
 
-// not working
-// .bar-center>.workspaces-container:last-child {
-//   margin-right: auto;
-// }
+$base: #000000;
+$text-base-color: #ffffff;
 
 
-// not working
-// .workspaces-container>.separator:first-child {
-//   display: none;
-// }
+window.menu {
+
+  color: $text-base-color;
+  background: $base;
+}
 
 window.bar {
-  background: #000000;
+  background: $base;
   padding: 8px;
   border-top: 1px solid #fff;
 
