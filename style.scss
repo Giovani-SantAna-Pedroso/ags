@@ -17,18 +17,54 @@
 
 $base: #000000;
 $text-base-color: #ffffff;
+$default-board: 1px solid #fff;
+$font-semi-bold: 600;
 
 
 window.menu {
+  .btn-system {
+    border: $default-board;
+    padding: 1rem;
+    font-size: 1.6rem;
+    font-weight: $font-semi-bold;
+  }
+
+  .cat-not-selected-color {
+    color: #4C4949;
+  }
+
+  .container-categories {
+    margin-bottom: 1.2rem;
+  }
+
+  .btn-cat {
+    font-size: 2.2rem;
+    font-weight: $font-semi-bold;
+    margin-bottom: 0.6rem;
+  }
+
+  .btn-sub-cat {
+    font-size: 1.2rem;
+    font-weight: $font-semi-bold ;
+    margin-bottom: 0.6rem;
+  }
 
   color: $text-base-color;
+  padding-left: 1.0rem;
+  padding-right: 1.0rem;
   background: $base;
+  border-right: $default-board;
+
+  button {
+
+    all: unset;
+  }
 }
 
 window.bar {
   background: $base;
   padding: 8px;
-  border-top: 1px solid #fff;
+  border-top: $default-board;
 
   button {
 
