@@ -1,5 +1,7 @@
-// /* SEPARATOR */
-//
+* {
+  font-family: "IBM Plex Mono", monospace;
+}
+
 .separator {
   margin: 1px 10px;
   font-weight: bold;
@@ -16,16 +18,52 @@
 
 
 $base: #000000;
+$disable-color: #4C4949;
 $text-base-color: #ffffff;
 $default-board: 1px solid #fff;
 $font-semi-bold: 600;
 
 
 window.menu {
+  .programs {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    entry {
+
+      all: unset;
+      padding: 0.4rem;
+      border: 2px solid $disable-color;
+      margin-bottom: 1rem;
+    }
+
+    .button-program {
+
+      font-size: 1.0rem;
+      margin-bottom: 0.6rem;
+      color: $disable-color;
+      border: 1px solid $disable-color;
+      padding: 0.4rem;
+
+    }
+
+  }
+
   .btn-system {
+    border: 1px solid $disable-color;
+    color: $disable-color;
+    padding: 0.6rem;
+
+    font-size: 1.4rem;
+    font-weight: $font-semi-bold;
+  }
+
+
+
+  .btn-system-selected {
     border: $default-board;
-    padding: 1rem;
-    font-size: 1.6rem;
+    padding: 0.6rem;
+    font-size: 1.4rem;
     font-weight: $font-semi-bold;
   }
 
@@ -38,15 +76,15 @@ window.menu {
   }
 
   .btn-cat {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: $font-semi-bold;
     margin-bottom: 0.6rem;
   }
 
   .btn-sub-cat {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     font-weight: $font-semi-bold ;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
   }
 
   color: $text-base-color;
@@ -63,8 +101,9 @@ window.menu {
 
 window.bar {
   background: $base;
-  padding: 8px;
+  padding: 0.2rem;
   border-top: $default-board;
+  font-size: 0.9rem;
 
   button {
 

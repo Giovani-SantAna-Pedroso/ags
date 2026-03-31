@@ -1,13 +1,18 @@
 import Separator from "../../../components/Separator"
+import WorkspacesHyprland from "../../Workspaces/Hyprland"
 import Mpris from "../Mpris"
-import WorkspacesHyprland from "../../Workspaces/Hyprland.tsx.bak"
-import WorkspacesSway from "../../Workspaces/Sway"
+// import WorkspacesHyprland from "../../Workspaces/Hyprland.tsx.bak"
+import { exec } from "ags/process"
+import GLib from "gi://GLib?version=2.0"
+// import WorkspacesSway from "../../Workspaces/Sway"
 
 export default function BarLeft({
   handleIsMenuOpen,
 }: {
   handleIsMenuOpen: any
 }) {
+  const wn = GLib.getenv("XDG_CURRENT_DESKTOP")
+  console.log(wn)
   return (
     <box class={"bar-left"}>
       <button
@@ -20,9 +25,12 @@ export default function BarLeft({
         [Super]
       </button>
 
+      {wn == "Hyprland" && <WorkspacesHyprland />}
+      {/* {wn == "Sway" && <WorkspacesSway />} */}
+
       {/* <Mpris></Mpris> */}
 
-      <WorkspacesSway />
+      {/* <WorkspacesSway /> */}
 
       <Separator />
     </box>

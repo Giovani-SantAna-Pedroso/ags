@@ -3,6 +3,7 @@
 1. dart-sass
 2. libastal-meta
 3. https://aylur.github.io/astal/guide/libraries/apps
+4. ibm plex mono => sudo pacman -S ttf-ibm-plex
 
 # TODO
 
